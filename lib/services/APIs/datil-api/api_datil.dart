@@ -58,6 +58,7 @@ class ApiDatil {
         await autorizationSRIInvoice(context: context, idInvoice: idInvoice);
         invoice =
             await getAutorizationStatus(context: context, idInvoice: idInvoice);
+        print('response body $invoice');
 
         return invoice;
       }

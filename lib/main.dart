@@ -16,6 +16,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
       title: 'Firebase Skeleton',
       home: Scaffold(
         body: DatilInvoicePage(),
