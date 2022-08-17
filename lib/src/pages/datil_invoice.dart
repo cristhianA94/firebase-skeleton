@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
 import '../../services/APIs/datil-api/api_datil.dart';
-import '../../shared/widgets/notification.dart';
+import '../../shared/widgets/notifications.dart';
 
 class DatilInvoicePage extends StatefulWidget {
   DatilInvoicePage({Key? key}) : super(key: key);
+
+  static const routeName = '/datil';
 
   @override
   State<DatilInvoicePage> createState() => _DatilInvoicePageState();
@@ -108,13 +110,12 @@ class _DatilInvoicePageState extends State<DatilInvoicePage> {
 
     // TODO Api DATIL Generar factura electrocnica
     Map invoice = await ApiDatil.createInvoice(context: context, data: factura);
-    // print('invoice $invoice');
+    print('invoice $invoice');
 
     if (invoice.isNotEmpty) {
+      Notifications.goodNotification(msg: 'Facturación correcta.');
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        Notifications.customSnackBarGood(content: 'Error en la facturación'),
-      );
+      Notifications.badNotification(msg: 'Error en la facturación');
     }
   }
 }

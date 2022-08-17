@@ -5,7 +5,7 @@ import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 
-import '../../../shared/widgets/notification.dart';
+import '../../../shared/widgets/notifications.dart';
 
 const _API_KEY_DATIL = "9144f13a90b1494e912466f8a4c3ae9a";
 const _API_PASS_DATIL = "Isedonebi2023\$\$";
@@ -45,10 +45,7 @@ class ApiDatil {
       print('response status ${response.statusCode}');
 
       if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          Notifications.customSnackBarGood(
-              content: 'Factura generada correctamente'),
-        );
+        Notifications.goodNotification(msg: 'Factura generada correctamente');
 
         Map res = json.decode(response.body);
 
@@ -64,10 +61,7 @@ class ApiDatil {
       }
     } on Error catch (e) {
       print('Catch $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        Notifications.customSnackBarWrong(
-            content: '¡Factura no pudo ser registrada!'),
-      );
+      Notifications.badNotification(msg: '¡Factura no pudo ser registrada!');
     }
     //  finally {
     //   httpClient.close();
@@ -98,10 +92,7 @@ class ApiDatil {
       // print('Autorization ${response.statusCode}');
 
       if (response.statusCode == 200) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          Notifications.customSnackBarWrong(
-              content: 'Factura en revisión por SRI'),
-        );
+        Notifications.goodNotification(msg: 'Factura en revisión por SRI');
         print('Factura en revisión por SRI');
       }
     } catch (e) {
@@ -135,9 +126,7 @@ class ApiDatil {
       }
     } catch (e) {
       print('Catch $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        Notifications.customSnackBarWrong(content: 'Error $e'),
-      );
+      Notifications.badNotification(msg: 'Error $e');
     }
     return res;
   }
@@ -169,9 +158,7 @@ class ApiDatil {
       }
     } catch (e) {
       print('Catch $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        Notifications.customSnackBarWrong(content: 'Error $e'),
-      );
+      Notifications.badNotification(msg: 'Error $e');
     }
     return pdf;
   }
